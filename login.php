@@ -6,20 +6,22 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     include 'signed.php';
     $username=$_POST['username'];
     $password=$_POST['password'];
+    $role=$_GET['role'];
 
-    $sql="Select * from `registration` where username='$username' and password='$password'";
+    $sql="Select * from `registration` where username='$username'";
 
     $result=mysqli_query($con,$sql);
 
     if($result){
         $num=mysqli_num_rows($result);
-        $row=mysqli_fetch_array($result, MYSQLI_ASSOC); 
+        $row=mysqli_fetch_array($result); 
         $hash_password = $row['password'];
-        if($num>0 || password_verify($password, $hash_password)){
+        if(password_verify($password, $hash_password)){
             $login=1;
             $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
             session_start();
             $_SESSION['username']=$username;
+            $_SESSION['role']=$role;
             $_SESSION['full_name']=$full_name;
             header('location:account.php');
         }else{

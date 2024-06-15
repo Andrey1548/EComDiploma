@@ -6,6 +6,9 @@ $select_user = mysqli_query($con, "SELECT * FROM `registration`");
         if(!isset($_SESSION['username'])){
           header('location:login.php');
         }
+        $sql="Select * from `registration`";
+        $result=mysqli_query($con,$sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +36,13 @@ $select_user = mysqli_query($con, "SELECT * FROM `registration`");
                 <h2><?php echo $_SESSION['full_name']; ?></h2>
             </div>
             <div>
-            <a href="admin.php">Панель адміна</a>
+            <?php
+                    if($_SESSION['role'] !== "admin"){
+                        echo '<a href="admin.php">Панель адміна</a>';
+                    }else{
+                        echo "";
+                    }
+            ?>
             </div>
             <a href="logout.php">Вийти з аккаунту</a>
             </div>    
