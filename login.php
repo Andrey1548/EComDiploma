@@ -1,12 +1,12 @@
 <?php
 $login=0;
 $invalid=0;
+error_reporting(0);
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     include 'signed.php';
     $username=$_POST['username'];
     $password=$_POST['password'];
-    $role=$_POST['role'];
 
     $sql="Select * from `registration` where username='$username'";
 
@@ -21,7 +21,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
             session_start();
             $_SESSION['username']=$username;
-            $_SESSION['role']=$role;
             $_SESSION['full_name']=$full_name;
             header('location:account.php');
         }else{
