@@ -2,10 +2,6 @@
 include 'signed.php';
 $login=0;
 $select_user = mysqli_query($con, "SELECT * FROM `registration`");
-        session_start();
-        if(!isset($_SESSION['username'])){
-          header('location:login.php');
-        }
         $sql="Select * from `registration`";
         $result=mysqli_query($con,$sql);
 
@@ -32,12 +28,12 @@ $select_user = mysqli_query($con, "SELECT * FROM `registration`");
             <hr>
             <div class="product_desc">
             <div>
-                <h5>ПІБ:</h5>
                 <h2><?php echo $_SESSION['full_name']; ?></h2>
             </div>
             <div>
+                <p><?php echo $_SESSION['role']; ?></p>
             <?php
-                    if($_SESSION['role'] !== "admin"){
+                    if($_SESSION['role'] == ''){
                         echo '<a href="admin.php">Панель адміна</a>';
                     }else{
                         echo "";

@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     include 'signed.php';
     $username=$_POST['username'];
     $password=$_POST['password'];
-    $role=$_GET['role'];
+    $role=$_POST['role'];
 
     $sql="Select * from `registration` where username='$username'";
 

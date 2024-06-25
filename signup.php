@@ -2,7 +2,6 @@
 $success=0;
 $user=0;
 
-session_start();
 if($_SERVER['REQUEST_METHOD']=='POST'){
     include 'signed.php';
     $username=filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);

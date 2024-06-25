@@ -1,6 +1,7 @@
 <?php 
 $loged=0;
 include 'signed.php';
+session_start();
         if(!isset($_SESSION['username'])){
           $loged=1;
         }
@@ -61,7 +62,7 @@ include 'signed.php';
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Logo</a>
+              <a class="navbar-brand" href="index.php">Logo</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -98,7 +99,7 @@ include 'signed.php';
                         </form> 
                     </div>
                     <div><?php echo $sub_total = $fetch_cart['price'] * $fetch_cart['quantity']; ?></div>
-                    <a href="index.php?remove=<?php echo $fetch_cart['id']; ?>" onclick="return confirm('remove item from cart?')" class='bx bxs-trash-alt cart-remove'>Видалити</a>
+                    <a href="index.php?remove=<?php echo $fetch_cart['id']; ?>" onclick="return confirm('Видалити товар з кошику?')" class='bx bxs-trash-alt cart-remove'>Видалити</a>
                 </div>
                 <?php 
                 $grand_total += $sub_total; 
